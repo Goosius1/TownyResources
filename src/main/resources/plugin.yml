@@ -26,3 +26,5 @@ permissions:
         default: op
         children:
             townyresources.admin.command.reload: true
+            townyresources.admin.command.removeitemstacks: true
+
