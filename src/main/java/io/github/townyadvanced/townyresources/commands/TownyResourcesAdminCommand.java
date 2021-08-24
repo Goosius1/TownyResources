@@ -91,10 +91,10 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 	
 	private void parseRemoveItemStacksCommand(CommandSender sender, String[] args) throws TownyException{
 		String worldName = args[0];
-		int xMin = Integer.parseInt(args[1]);	
-		int yMin = Integer.parseInt(args[2]);	
-		int xMax = Integer.parseInt(args[3]);	
-		int yMax = Integer.parseInt(args[4]);
+		int xMin = Integer.parseInt(args[1]) / 16;	//Divide by 16 because we will be working off the grid of chunks
+		int zMin = Integer.parseInt(args[2]) / 16;	
+		int xMax = Integer.parseInt(args[3]) / 16;	
+		int zMax = Integer.parseInt(args[4]) / 16;
 		String extractionCategoryName = args[5];
 
 		//Verify the world name is ok
@@ -111,14 +111,14 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 		//Find all theoretical chunk positions
 		List<Integer[]> chunkPositions = new ArrayList<>();
 		int x = xMin;
-		int y = yMin;		
-		while(y <= yMax) {
-			chunkPositions.add(new Integer[]{x,y});
-			x += 16;
+		int z = zMin;		
+		while(z <= zMax) {
+			chunkPositions.add(new Integer[]{x,z});
+			x += 1;
 			//If end of row, go to next one
 			if(x > xMax) {
 				x = xMin;
-				y += 16;				
+				z += 1;				
 			}
 		}
 
@@ -128,7 +128,7 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 		//Cycle all chunks on the list
 		Chunk chunk;
 		boolean chunkWasLoadedBeforeScan;
-		for(Integer[] chunkPosition: chunkPositions) {
+		for(Integer[] chunkPosition: chunkPositions) {		
 			//Load chunk
 			chunk = world.getChunkAt(chunkPosition[0], chunkPosition[1]);			
 			chunk.setForceLoaded(true);
@@ -142,18 +142,25 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 			for(BlockState tileEntity: chunk.getTileEntities()) {
 				if(tileEntity instanceof Container) {
 					for(ItemStack itemStack: ((Container)tileEntity).getInventory().getContents()) {
-						if(eligibleMaterials.contains(itemStack.getType())) {
+						if(itemStack != null && eligibleMaterials.contains(itemStack.getType())) {
 							itemStack.setAmount(0);
 						}
 					}
 				}
 			}
 			//Unload chunk
-			chunk.setForceLoaded(false);				
+			chunk.setForceLoaded(false);	
 			if(!chunkWasLoadedBeforeScan) {
 				chunk.unload();
 			}
+			//Sleep to avoid overloading server
+			try {
+				Thread.sleep(25);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
+		System.out.println("All done!");
 	}
 }
 
