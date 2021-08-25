@@ -286,8 +286,8 @@ public enum TownyResourcesConfigNodes {
 			"2500",
 			"",
 			"# After each batch is processed, the code will paused temporarily. This is to help not overload the server etc."),
-	REDUCE_ITEMS_DISCONNECT_PLAYERS_WHEN_REDUCTION_PROCESS_IS_RUNNING(
-			"reduce_items.disconnect_players_when_reduction_process_is_running",
+	REDUCE_ITEMS_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING(
+			"reduce_items.disconnect_players_while_reduction_process_is_running",
 			"true",
 			"",
 			"# If true, players are kicked when the reduction process starts, and cannot connect while it is running.",
@@ -299,12 +299,12 @@ public enum TownyResourcesConfigNodes {
 			"",
 			"# The materials which will be affected by the reduction process.",
 			"# There can be any number of entries (the default example is just 3).",
-			"# Each entry is in the format:  {<SOURCE_MATERIAL_1>, <SOURCE_MATERIAL_2> .... <FINAL_MATERIAL>, <PERCENTAGE_STACK_REDUCTION>}.",
+			"# Each entry is in the format:  {<SOURCE_MATERIAL_1> + .... <FINAL_MATERIAL>, <PERCENTAGE_STACK_REDUCTION>}.",
 			"# ",
 			"# The algorithm works like this:",
 			"# 1. All player inventories and enderchests are scanned",
 			"# 2. All containers in the affected areas are scanned:",
-			"# 3. IMPORTANT NOTE: BLOCKS ARE IGNORED AND NOT SCANNED!)",
+			"# 3. IMPORTANT NOTE: PLACED BLOCKS ARE IGNORED AND NOT SCANNED!)",
 			"# 4. During scanning, whenever an item stack is found: If any entry lists that item stack as a SOURCE_MATERIAL, then the item stack is converted to the FINAL_MATERIAL of that entry, and its amount is reduced by the PERCENTAGE_STACK_REDUCTION of that entry."),
 	REDUCE_ITEMS_AFFECTED_AREAS(
 			"reduce_items.affected_areas",

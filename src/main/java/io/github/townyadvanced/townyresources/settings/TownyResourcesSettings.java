@@ -369,4 +369,44 @@ public class TownyResourcesSettings {
 	public static boolean areResourceExtractionLimitsEnabled() {
 		return getBoolean(TownyResourcesConfigNodes.RESOURCE_EXTRACTION_LIMITS_ENABLED);
 	}
+	
+	public boolean isReduceItemsEnabled() {
+		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_ENABLED);
+	}
+	
+	public double getReduceItemsStartDelayMinutes() {
+		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_START_DELAY_MINUTES);
+	}
+	
+	public double getReduceItemsBatchSizeNumChunks() {
+		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_BATCH_SIZE_NUM_CHUNKS);
+	}
+	
+	public int getReduceItemsPauseAfterEachBatchMillis() {
+		return getInt(TownyResourcesConfigNodes.REDUCE_ITEMS_PAUSE_AFTER_EACH_BATCH_MILLIS);
+	}
+	
+	public boolean getReduceItemsDisconnectPlayersWhileReductionProcessIsRunning() {	
+		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING);
+	}
+	
+	public String getReduceItemsMaterials() {
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_MATERIALS);
+	}
+	
+	public String getReduceItemsAffectedAreasLocations() {
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_LOCATIONS);
+	}
+	
+	public String getReduceItemsAffectedAreasStartLocation() {
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_START_LOCATION);
+	}
+	
+	public boolean getReduceItemsAffectedAreasPlayerInventories() {
+		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_PLAYER_INVENTORIES);
+	}
+	
+	public boolean getReduceItemsAffectedAreasEnderchestInventories() {
+		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_ENDERCHEST_INVENTORIES);
+	}
 }
