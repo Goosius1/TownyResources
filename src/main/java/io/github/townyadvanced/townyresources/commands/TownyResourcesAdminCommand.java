@@ -23,13 +23,25 @@ import java.util.List;
 
 public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter {
 
-	private static final List<String> tabCompletes = Arrays.asList("reload, reduceitems");
+	private static final List<String> tabCompletes = Collections.singletonList("reload, reduceitems");
+	private static final List<String> reduceItemsTabCompletes = Collections.singletonList("start, stop");
 
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		if (args.length == 0)
+			return Collections.emptyList();
+		
 		if (args.length == 1)
 			return NameUtil.filterByStart(tabCompletes, args[0]);
-		else
-			return Collections.emptyList();
+
+		switch (args[0].toLowerCase()) {
+			case "reduceitems":	
+				if (args.length == 2)
+					return NameUtil.filterByStart(reduceItemsTabCompletes, args[1]);
+				else
+					return Collections.emptyList();								
+			default:
+				return Collections.emptyList();								
+		}
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -72,6 +84,7 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 	private void showHelp(CommandSender sender) {
 		sender.sendMessage(ChatTools.formatTitle("/townyresourcesadmin"));
 		sender.sendMessage(ChatTools.formatCommand("Eg", "/tra", "reload", TownyResourcesTranslation.of("admin_help_reload")));
+		sender.sendMessage(ChatTools.formatCommand("Eg", "/tra", "reduceitems", TownyResourcesTranslation.of("admin_help_reduceitems")));
 	}
 
 	private void parseReloadCommand(CommandSender sender) {

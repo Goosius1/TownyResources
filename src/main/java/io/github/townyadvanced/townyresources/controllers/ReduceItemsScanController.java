@@ -27,6 +27,7 @@ public class ReduceItemsScanController {
 
 	public static void startScan(CommandSender sender) throws TownyException {
 	
+	/*
 		//Check if scan is already running
 		
 		//Check if the countdown to scan has already started
@@ -116,5 +117,8 @@ public class ReduceItemsScanController {
 			}
 		}
 		System.out.println("All done!");
+		*/
 	}
+	
+	 
 }

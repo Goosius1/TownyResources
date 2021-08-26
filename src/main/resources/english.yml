@@ -1,5 +1,5 @@
 name: TownyResources
-version: 0.02
+version: 0.03
 language: english
 author: Goosius
 website: 'https://github.com/TownyAdvanced/TownyResources'
@@ -142,3 +142,5 @@ resource_category_chickens: 'Chicken, a flock of chickens'
 resource_category_eggs: 'Eggs, a flock of hens'
 resource_category_ender_pearls: 'Ender Pearls, a nest of endermen'
 
+# Added in 0.03
+admin_help_reduceitems: 'Start or stop the reduceitems scan'
