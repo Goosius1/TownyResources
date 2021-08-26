@@ -371,35 +371,35 @@ public class TownyResourcesSettings {
 		return getBoolean(TownyResourcesConfigNodes.RESOURCE_EXTRACTION_LIMITS_ENABLED);
 	}
 	
-	public boolean isReduceItemsEnabled() {
+	public static boolean isReduceItemsScanEnabled() {
 		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_ENABLED);
 	}
 	
-	public double getReduceItemsStartDelayMinutes() {
+	public static double getReduceItemsScanStartDelayMinutes() {
 		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_START_DELAY_MINUTES);
 	}
 	
-	public double getReduceItemsBatchSizeNumChunks() {
+	public static double getReduceItemsScanBatchSizeNumChunks() {
 		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_BATCH_SIZE_NUM_CHUNKS);
 	}
 	
-	public int getReduceItemsPauseAfterEachBatchMillis() {
+	public static int getReduceItemsScanPauseAfterEachBatchMillis() {
 		return getInt(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS);
 	}
 	
-	public boolean getReduceItemsDisconnectPlayersWhileReductionProcessIsRunning() {	
+	public static boolean getReduceItemsScanDisconnectPlayersWhileReductionProcessIsRunning() {	
 		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING);
 	}
 	
-	public String getReduceItemsMaterials() {
+	public static String getReduceItemsScanMaterials() {
 		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_MATERIALS);
 	}
 	
-	public String getReduceItemsAffectedAreasLocations() {
+	public static String getReduceItemsScanAffectedAreasLocations() {
 		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_LOCATIONS);
 	}
 	
-	public String getReduceItemsAffectedAreasStartLocation() {
+	public static String getReduceItemsScanScanAffectedAreasStartLocation() {
 		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_STARTING_LOCATION);
 	}
 	
