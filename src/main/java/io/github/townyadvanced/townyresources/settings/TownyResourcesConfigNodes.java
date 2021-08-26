@@ -273,7 +273,7 @@ public enum TownyResourcesConfigNodes {
 			"# if false, the reduce items scan cannot be run."),
 	REDUCE_ITEMS_SCAN_START_COUNTDOWN_MINUTES(
 			"reduce_items_scan.start_countdown_minutes",
-			"5",
+			"0.5",
 			"",
 			"# The duration of the countdown after the command is run, and BEFORE the scan starts."),
 	REDUCE_ITEMS_SCAN_BATCH_SIZE(
@@ -283,7 +283,7 @@ public enum TownyResourcesConfigNodes {
 			"# The number of chunks/players to process in each batch."),
 	REDUCE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS(
 			"reduce_items_scan.pause_after_each_batch_millis",
-			"2500",
+			"250",
 			"",
 			"# After each batch is scanned, the code will paused temporarily. This is to help not overload the server etc."),
 	REDUCE_ITEMS_SCAN_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING(
