@@ -3,7 +3,9 @@ package io.github.townyadvanced.townyresources.commands;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.utils.NameUtil;
 import com.palmergames.bukkit.util.ChatTools;
+import com.palmergames.util.StringMgmt;
 import io.github.townyadvanced.townyresources.TownyResources;
+import io.github.townyadvanced.townyresources.controllers.ReduceItemsScanController;
 import io.github.townyadvanced.townyresources.enums.TownyResourcesPermissionNodes;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
@@ -53,7 +55,7 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 					parseReloadCommand(sender);
 					break;
 				case "reduceitems":
-					parseReduceItemsCommand(sender, );
+					parseReduceItemsCommand(sender, StringMgmt.remFirstArg(args));
 					break;
 				/*
 				 * Show help if no command found.
@@ -80,9 +82,28 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 		TownyResourcesMessagingUtil.sendErrorMsg(sender, TownyResourcesTranslation.of("townyresources_failed_to_reload"));
 	}
 
-	private void parseReduceItemsCommand(CommandSender sender) throws TownyException {
+	private void parseReduceItemsCommand(CommandSender sender, String[] args) throws TownyException {		
+		//Validations of instruction
+		if(args[0].length() == 0) {
+			showHelp(sender);
+			return;
+		}
+
 		if(!TownyResourcesSettings.isReduceItemsScanEnabled())
 			throw new TownyException("Not enabled");
+
+		String instruction = args[0].toLowerCase();		
+		switch (instruction.toLowerCase()) {
+			case "start":
+				ReduceItemsScanController.startScan(sender);
+				return;
+			case "stop":
+				ReduceItemsScanController.stopScan(sender);
+				return;
+			default:
+				showHelp(sender);
+				return;			
+		}
 	}
 
 }

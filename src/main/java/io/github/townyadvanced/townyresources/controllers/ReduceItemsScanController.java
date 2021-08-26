@@ -2,6 +2,7 @@ package io.github.townyadvanced.townyresources.controllers;
 
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
+import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
@@ -17,12 +18,33 @@ import java.util.List;
 
 public class ReduceItemsScanController {
 
+	public static boolean countdownInProgress;
+	public static long scanStartEta;
 
-    public void stopScan(CommandSender sender) throws TownyException {
-        
+    public static void stopScan(CommandSender sender) throws TownyException {
+        //This will stop both the scan itself  OR the countdown
     }
 
-	private void startScan(CommandSender sender) throws TownyException {
+	public static void startScan(CommandSender sender) throws TownyException {
+	
+		//Check if scan is already running
+		
+		//Check if the countdown to scan has already started
+		
+		//Variables for convenience
+		int batchSize = TownyResourcesSettings.getReduceItemsScanBatchSize();
+		int pauseAfterEachBatchMillis = TownyResourcesSettings.getReduceItemsScanPauseAfterEachBatchMillis();
+		int totalBatches;  //Helps with estimating progress (It is total num chunks + total num players
+		
+		//Variables to track scan progress
+		int currentX;
+		int currentY;
+		int currentPlayer;
+		int currentLocationName;
+		int batchesAlreadyScanned;  //Helps with estimating progress
+		
+		int 
+	
 		String worldName = args[0];
 		int xMin = Integer.parseInt(args[1]) / 16;	//Divide by 16 because we will be working off the grid of chunks
 		int zMin = Integer.parseInt(args[2]) / 16;	
@@ -38,7 +60,7 @@ public class ReduceItemsScanController {
 		//Verify the resourceCategory name is ok
 		ResourceExtractionCategory resourceCategory = PlayerExtractionLimitsController.getResourceExtractionCategory(extractionCategoryName.toLowerCase());		
 		if(resourceCategory == null)
-			throw new TownyException("Unknown resource category (" + extractionCategoryName + ") Ensure the category is included in the resource_extraction_limits.categories config");			
+;			throw new TownyException("Unknown resource category (" + extractionCategoryName + ") Ensure the category is included in the resource_extraction_limits.categories config");			
 		List<Material> eligibleMaterials = resourceCategory.getMaterialsInCategory();
 
 		//Find all theoretical chunk positions

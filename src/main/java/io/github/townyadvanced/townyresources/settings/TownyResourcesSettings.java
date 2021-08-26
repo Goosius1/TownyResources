@@ -1,12 +1,10 @@
 package io.github.townyadvanced.townyresources.settings;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.palmergames.bukkit.towny.Towny;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
@@ -14,7 +12,6 @@ import io.github.townyadvanced.townyresources.objects.ResourceOffer;
 import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.util.FileMgmt;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 
 public class TownyResourcesSettings {
 	private static CommentedConfiguration config, newConfig;
@@ -375,12 +372,12 @@ public class TownyResourcesSettings {
 		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_ENABLED);
 	}
 	
-	public static double getReduceItemsScanStartDelayMinutes() {
-		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_START_DELAY_MINUTES);
+	public static double getReduceItemsScanStartCountdownMinutes() {
+		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_START_COUNTDOWN_MINUTES);
 	}
 	
-	public static double getReduceItemsScanBatchSizeNumChunks() {
-		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_BATCH_SIZE_NUM_CHUNKS);
+	public static int getReduceItemsScanBatchSize() {
+		return getInt(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_BATCH_SIZE);
 	}
 	
 	public static int getReduceItemsScanPauseAfterEachBatchMillis() {

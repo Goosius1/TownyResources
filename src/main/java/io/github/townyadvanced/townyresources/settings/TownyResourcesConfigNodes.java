@@ -271,16 +271,16 @@ public enum TownyResourcesConfigNodes {
 			"",
 			"# If true, the reduce items scan can be started, using /swa reduceitems start.",
 			"# if false, the reduce items scan cannot be run."),
-	REDUCE_ITEMS_SCAN_START_DELAY_MINUTES(
-			"reduce_items_scan.start_delay_minutes",
+	REDUCE_ITEMS_SCAN_START_COUNTDOWN_MINUTES(
+			"reduce_items_scan.start_countdown_minutes",
 			"5",
 			"",
-			"# The duration of the delay after the command is run, and BEFORE the scan starts."),
-	REDUCE_ITEMS_SCAN_BATCH_SIZE_NUM_CHUNKS(
-			"reduce_items_scan.batch_size_num_chunks",
+			"# The duration of the countdown after the command is run, and BEFORE the scan starts."),
+	REDUCE_ITEMS_SCAN_BATCH_SIZE(
+			"reduce_items_scan.batch_size",
 			"2500",
 			"",
-			"# The number of chunks to process in each batch."),
+			"# The number of chunks/players to process in each batch."),
 	REDUCE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS(
 			"reduce_items_scan.pause_after_each_batch_millis",
 			"2500",
