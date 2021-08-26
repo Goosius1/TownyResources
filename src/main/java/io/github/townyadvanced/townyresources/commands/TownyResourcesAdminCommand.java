@@ -8,6 +8,7 @@ import io.github.townyadvanced.townyresources.enums.TownyResourcesPermissionNode
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -52,7 +53,7 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 					parseReloadCommand(sender);
 					break;
 				case "reduceitems":
-					parseReduceItemsCommand(sender);
+					parseReduceItemsCommand(sender, );
 					break;
 				/*
 				 * Show help if no command found.
