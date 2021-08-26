@@ -254,86 +254,69 @@ public enum TownyResourcesConfigNodes {
 			"# 2 - The discovery weight of the category (used during discovery)",
 			"# 3-  The base amount of the offer (in stacks)",
 			"# 4-  The list of materials in the category"),
-	REDUCE_ITEMS(
-			"reduce_items",
+	REDUCE_ITEMS_SCAN(
+			"reduce_items_scan",
 			"",
 			"",
 			"",
 			"############################################################",
 			"# +------------------------------------------------------+ #",
-			"# |                    Reduce Items                      | #",
+			"# |                 Reduce Items Scan                     | #",
 			"# +------------------------------------------------------+ #",
 			"############################################################",
 			""),
-	REDUCE_ITEMS_ENABLED(
-			"reduce_items.enabled",
+	REDUCE_ITEMS_SCAN_ENABLED(
+			"reduce_items_scan.enabled",
 			"false",
 			"",
-			"# If true, the reduce items command can be run.",
-			"# if false, the reduce items command cannot be run."),
-	REDUCE_ITEMS_START_DELAY_MINUTES(
-			"reduce_items.start_delay_minutes",
+			"# If true, the reduce items scan can be started, using /swa reduceitems start.",
+			"# if false, the reduce items scan cannot be run."),
+	REDUCE_ITEMS_SCAN_START_DELAY_MINUTES(
+			"reduce_items_scan.start_delay_minutes",
 			"5",
 			"",
-			"# The duration of the delay after the command is run, and BEFORE the reduction process starts."),
-	REDUCE_ITEMS_BATCH_SIZE_NUM_CHUNKS(
-			"reduce_items.batch_size_num_chunks",
+			"# The duration of the delay after the command is run, and BEFORE the scan starts."),
+	REDUCE_ITEMS_SCAN_BATCH_SIZE_NUM_CHUNKS(
+			"reduce_items_scan.batch_size_num_chunks",
 			"2500",
 			"",
 			"# The number of chunks to process in each batch."),
-	REDUCE_ITEMS_PAUSE_AFTER_EACH_BATCH_MILLIS(
-			"reduce_items.pause_after_each_batch_millis",
+	REDUCE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS(
+			"reduce_items_scan.pause_after_each_batch_millis",
 			"2500",
 			"",
-			"# After each batch is processed, the code will paused temporarily. This is to help not overload the server etc."),
-	REDUCE_ITEMS_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING(
-			"reduce_items.disconnect_players_while_reduction_process_is_running",
+			"# After each batch is scanned, the code will paused temporarily. This is to help not overload the server etc."),
+	REDUCE_ITEMS_SCAN_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING(
+			"reduce_items_scan.disconnect_players_while_reduction_process_is_running",
 			"true",
 			"",
-			"# If true, players are kicked when the reduction process starts, and cannot connect while it is running.",
-			"# Players with the permission to run the reduce command are immune, as are OP's.",
+			"# If true, players are kicked when the scan starts, and cannot connect while it is running.",
+			"# Players with permission to start the scan are immune, as are OP's.",
 			"# This setting is recommended, otherwise players would certainly move items around the map to avoid them getting reduced."),
-	REDUCE_ITEMS_MATERIALS(
-			"reduce_items.materials",
+	REDUCE_ITEMS_SCAN_MATERIALS(
+			"reduce_items_scan.materials",
 			"{GRANITE, DIORITE, ANDESITE, GOLD_INGOT, 30%}, {OAK_LOG, OAK_LOG, 10%}, {EMERALD, EMERALD, 100%}",
 			"",
-			"# The materials which will be affected by the reduction process.",
+			"# The materials which will be affected by the scan.",
 			"# There can be any number of entries (the default example is just 3).",
 			"# Each entry is in the format:  {<SOURCE_MATERIAL_1> + .... <FINAL_MATERIAL>, <PERCENTAGE_STACK_REDUCTION>}.",
-			"# ",
-			"# The algorithm works like this:",
-			"# 1. All player inventories and enderchests are scanned",
-			"# 2. All containers in the affected areas are scanned:",
-			"# 3. IMPORTANT NOTE: PLACED BLOCKS ARE IGNORED AND NOT SCANNED!)",
-			"# 4. During scanning, whenever an item stack is found: If any entry lists that item stack as a SOURCE_MATERIAL, then the item stack is converted to the FINAL_MATERIAL of that entry, and its amount is reduced by the PERCENTAGE_STACK_REDUCTION of that entry."),
-	REDUCE_ITEMS_AFFECTED_AREAS(
-			"reduce_items.affected_areas",
+			"# During scanning, whenever an item stack is found: If any entry lists that item stack as a SOURCE_MATERIAL, then the item stack is converted to the FINAL_MATERIAL of that entry, and its amount is reduced by the PERCENTAGE_STACK_REDUCTION of that entry."),
+	REDUCE_ITEMS_SCAN_LOCATIONS(
+			"reduce_items_scan.locations",
+			"{world: -1000, -1000, 1000, 1000} {nether, -100, -100, 100, 100}, {end -100, -100, 100, 100}, {/player-inventories}",
 			"",
+			"# The locations of the virtual game-universe which will be scanned.",
+			"# Each entry can have one of two formats:",			
+			"# A. Defining a rectangle in a gameworld: {<world name>, <topLeftX>, <topLeftY>, <bottomRightX>, <bottomRightY>.",
+			"# B. A special keyword indicating player inventories (both regular & enderchest): /player-inventories"),						
+	REDUCE_ITEMS_SCAN_STARTING_LOCATION(
+			"reduce_items_scan.affected_areas.starting_location",
+			 "world, 0",
 			"",
-			""),
-	REDUCE_ITEMS_AFFECTED_AREAS_LOCATIONS(
-			"reduce_items.affected_areas.locations",
-			"{world: -1000, -1000, 1000, 1000} {nether, -100, -100, 100, 100}, {end -100, -100, 100, 100}",
-			"",
-			"# The world locations which will be affected by the reduction process.",
-			"# The format of each entry defines a rectangle: {<world name>, <topLeftX>, <topLeftY>, <bottomRightX>, <bottomRightY>."),			
-	REDUCE_ITEMS_AFFECTED_AREAS_START_LOCATION(
-			"reduce_items.affected_areas.start_location",
-			"{world: -1000, -1000}",
-			"",
-			"# Indicates where the reduction process should start.",
-			"# Useful if a reduction process gets interrupted."),			
-	REDUCE_ITEMS_AFFECTED_AREAS_PLAYER_INVENTORIES(
-			"reduce_items.affected_areas.player_inventories",
-			"true",
-			"",
-			"# If true, player inventories will be affected by the reduction process."),
-	REDUCE_ITEMS_AFFECTED_AREAS_ENDERCHEST_INVENTORIES(
-			"reduce_items.affected_areas.enderchest_inventories",
-			"true",
-			"",
-			"# If true, enderchest inventories will be affected by the reduction process.");
-
+			"# Indicates where the reduction scan should start.",
+			"# Useful if a reduction process gets interrupted.",			
+			"# Examples:   'world,-50,-50', 'world,200,200',  '/player-inventories,800'");
+			
 	private final String Root;
 	private final String Default;
 	private String[] comments;

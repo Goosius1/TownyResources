@@ -14,6 +14,7 @@ import io.github.townyadvanced.townyresources.objects.ResourceOffer;
 import io.github.townyadvanced.townyresources.objects.ResourceOfferCategory;
 import io.github.townyadvanced.townyresources.util.FileMgmt;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 
 public class TownyResourcesSettings {
 	private static CommentedConfiguration config, newConfig;
@@ -371,42 +372,35 @@ public class TownyResourcesSettings {
 	}
 	
 	public boolean isReduceItemsEnabled() {
-		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_ENABLED);
+		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_ENABLED);
 	}
 	
 	public double getReduceItemsStartDelayMinutes() {
-		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_START_DELAY_MINUTES);
+		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_START_DELAY_MINUTES);
 	}
 	
 	public double getReduceItemsBatchSizeNumChunks() {
-		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_BATCH_SIZE_NUM_CHUNKS);
+		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_BATCH_SIZE_NUM_CHUNKS);
 	}
 	
 	public int getReduceItemsPauseAfterEachBatchMillis() {
-		return getInt(TownyResourcesConfigNodes.REDUCE_ITEMS_PAUSE_AFTER_EACH_BATCH_MILLIS);
+		return getInt(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS);
 	}
 	
 	public boolean getReduceItemsDisconnectPlayersWhileReductionProcessIsRunning() {	
-		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING);
+		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING);
 	}
 	
 	public String getReduceItemsMaterials() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_MATERIALS);
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_MATERIALS);
 	}
 	
 	public String getReduceItemsAffectedAreasLocations() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_LOCATIONS);
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_LOCATIONS);
 	}
 	
 	public String getReduceItemsAffectedAreasStartLocation() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_START_LOCATION);
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_STARTING_LOCATION);
 	}
 	
-	public boolean getReduceItemsAffectedAreasPlayerInventories() {
-		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_PLAYER_INVENTORIES);
-	}
-	
-	public boolean getReduceItemsAffectedAreasEnderchestInventories() {
-		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_AFFECTED_AREAS_ENDERCHEST_INVENTORIES);
-	}
 }
