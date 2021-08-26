@@ -81,7 +81,7 @@ public class TownyResourcesCommand implements CommandExecutor, TabCompleter {
 		} catch (Exception e) {
 			//Unexpected exception
 			TownyResourcesMessagingUtil.sendErrorMsg(player, e.getMessage());
-			e.printStackTrace();  //TODO -Remove when done			
+			e.printStackTrace(); 		
 		}
 	}
 

@@ -1,8 +1,10 @@
 package io.github.townyadvanced.townyresources.controllers;
 
+import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
+import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
@@ -18,20 +20,75 @@ import java.util.List;
 
 public class ReduceItemsScanController {
 
-	public static boolean countdownInProgress;
-	public static long scanStartEta;
+	public static boolean countdownInProgress = false;
+	public static long countdownEndEta;
+	public static boolean scanInProgress = false;
+	public static boolean scanStopping = false;
+	public static double scanPercentageCompletion = 0;
 
-    public static void stopScan(CommandSender sender) throws TownyException {
-        //This will stop both the scan itself  OR the countdown
+	/**
+	 * Stops a scan
+	 * 
+	 * @param sender sender
+	 * @throws TownyException on validation errors
+	 */
+	public static void stopScan(CommandSender sender) throws TownyException {
+		if(!scanInProgress && !countdownInProgress) {
+			throw new TownyException("There is no scan or countdown in progress.");
+		}
+		
+		if(scanStopping) {
+			throw new TownyException("The scan is stopping.");
+		}
+		
+		if(scanInProgress) {
+			scanStopping = true;  	//This requests that the scan be stopped
+			TownyResourcesMessagingUtil.sendMsg(sender, "Done. The scan is now stopping.");
+			return;
+		}
+		
+		if(countdownInProgress) {
+			countdownInProgress = false;   //This stops the countdown immediately
+			TownyResourcesMessagingUtil.sendMsg(sender, "Done. The countdown is now stopped.");
+			return;
+		}
     }
 
-	public static void startScan(CommandSender sender) throws TownyException {
+	/**
+	 * Starts a scan countdown
+	 * 
+	 * @param sender sender
+	 * @throws TownyException on validation errors
+	 */
+	public static void startScanCountdown(CommandSender sender) throws TownyException {
+		if(scanInProgress)
+			throw new TownyException("A scan is already in progress");
+			
+		if(countdownInProgress)
+			throw new TownyException("A countdown is already in progress"); 
 	
-	/*
-		//Check if scan is already running
-		
-		//Check if the countdown to scan has already started
-		
+		countdownInProgress = true;
+		countdownEndEta = System.currentTimeMillis() + (int)(TownyResourcesSettings.getReduceItemsScanStartCountdownMinutes() * 60000);
+	}
+
+	/**
+	 * Process the countdown to a scan
+	 * 
+	 * If there is none, return
+	 * If there is, and it reaches 0, start the scan
+	 */
+	public static void processScanCountdown() {
+		if(!countdownInProgress)
+			return;
+			
+		if(System.currentTimeMillis() < countdownEndEta)
+			return;
+			
+		//Countdown has reached 0. Start scan
+		countdownInProgress = false;
+		scanInProgress = true;	
+		scanPercentageCompletion = 0;
+			
 		//Variables for convenience
 		int batchSize = TownyResourcesSettings.getReduceItemsScanBatchSize();
 		int pauseAfterEachBatchMillis = TownyResourcesSettings.getReduceItemsScanPauseAfterEachBatchMillis();
@@ -44,6 +101,25 @@ public class ReduceItemsScanController {
 		int currentLocationName;
 		int batchesAlreadyScanned;  //Helps with estimating progress
 		
+		
+		
+	}
+
+
+	/**
+	 * If a scan is in progress, provide regular notifications
+	 */
+	public static void processScanNotifications() {
+		if(!scanInProgress)
+			return;
+	
+	}
+	/*
+		//Check if scan is already running
+		
+		//Check if the countdown to scan has already started
+		
+
 		int 
 	
 		String worldName = args[0];
@@ -118,7 +194,7 @@ public class ReduceItemsScanController {
 		}
 		System.out.println("All done!");
 		*/
-	}
+	//}
 	
 	 
 }

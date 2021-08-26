@@ -392,11 +392,15 @@ public class TownyResourcesSettings {
 		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_MATERIALS);
 	}
 	
-	public static String getReduceItemsScanAffectedAreasLocations() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_LOCATIONS);
+	public static String getReduceItemsScanPlayerInventories() {
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_PLAYER_INVENTORIES);
 	}
 	
-	public static String getReduceItemsScanScanAffectedAreasStartLocation() {
+	public static String getReduceItemsScanWorldLocations() {
+		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_WORLD_LOCATIONS);
+	}
+	
+	public static String getReduceItemsScanStartingWorldLocation() {
 		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_STARTING_LOCATION);
 	}
 	

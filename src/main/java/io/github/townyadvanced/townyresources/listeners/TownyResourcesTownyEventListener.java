@@ -5,6 +5,7 @@ import com.palmergames.bukkit.towny.event.TownyLoadedDatabaseEvent;
 import com.palmergames.bukkit.towny.event.time.NewShortTimeEvent;
 import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.controllers.PlayerExtractionLimitsController;
+import io.github.townyadvanced.townyresources.controllers.ReduceItemsScanController;
 import io.github.townyadvanced.townyresources.controllers.TownResourceProductionController;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import org.bukkit.event.EventHandler;
@@ -62,6 +63,11 @@ public class TownyResourcesTownyEventListener implements Listener {
             if(System.currentTimeMillis() > nextProductionRecalculationTime) {
                 nextProductionRecalculationTime = System.currentTimeMillis() + PRODUCTION_RECALCULATION_INTERVAL_MILLIS; 
                 TownResourceProductionController.recalculateAllProduction();
+            }
+            
+            if(TownyResourcesSettings.isReduceItemsScanEnabled()) {
+                ReduceItemsScanController.processScanCountdown();
+                ReduceItemsScanController.processScanNotifications();                
             }
         }
     }

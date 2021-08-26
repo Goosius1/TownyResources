@@ -301,22 +301,26 @@ public enum TownyResourcesConfigNodes {
 			"# There can be any number of entries (the default example is just 3).",
 			"# Each entry is in the format:  {<SOURCE_MATERIAL_1> + .... <FINAL_MATERIAL>, <PERCENTAGE_STACK_REDUCTION>}.",
 			"# During scanning, whenever an item stack is found: If any entry lists that item stack as a SOURCE_MATERIAL, then the item stack is converted to the FINAL_MATERIAL of that entry, and its amount is reduced by the PERCENTAGE_STACK_REDUCTION of that entry."),
-	REDUCE_ITEMS_SCAN_LOCATIONS(
-			"reduce_items_scan.locations",
-			"{world: -1000, -1000, 1000, 1000} {nether, -100, -100, 100, 100}, {end -100, -100, 100, 100}, {/player-inventories}",
+	REDUCE_ITEMS_SCAN_PLAYER_INVENTORIES(
+			"reduce_items_scan.player_inventories",
+			"true",
 			"",
-			"# The locations of the virtual game-universe which will be scanned.",
-			"# Each entry can have one of two formats:",			
-			"# A. Defining a rectangle in a gameworld: {<world name>, <topLeftX>, <topLeftY>, <bottomRightX>, <bottomRightY>.",
-			"# B. A special keyword indicating player inventories (both regular & enderchest): /player-inventories"),						
+			"# If true, then player inventories will be scanned.",
+			"# This includes regular inventories and enderchests.",
+			"# This scan is done before scanning the world locations."),			
+	REDUCE_ITEMS_SCAN_WORLD_LOCATIONS(
+			"reduce_items_scan.world_locations",
+			"{world: -1000, -1000, 1000, 1000} {nether, -100, -100, 100, 100}, {end -100, -100, 100, 100}",
+			"",
+			"# The locations of the game-universe which will be scanned.",
+			"# Each entry defines a rectangle in a gameworld: {<world name>, <topLeftX>, <topLeftY>, <bottomRightX>, <bottomRightY>."),
 	REDUCE_ITEMS_SCAN_STARTING_LOCATION(
-			"reduce_items_scan.affected_areas.starting_location",
-			 "world, 0",
+			"reduce_items_scan.starting_location",
+			 "world, -1000, -1000",
 			"",
 			"# Indicates where the reduction scan should start.",
-			"# Useful if a reduction process gets interrupted.",			
-			"# Examples:   'world,-50,-50', 'world,200,200',  '/player-inventories,800'");
-			
+			"# Useful if a reduction process gets interrupted.");
+						
 	private final String Root;
 	private final String Default;
 	private String[] comments;
