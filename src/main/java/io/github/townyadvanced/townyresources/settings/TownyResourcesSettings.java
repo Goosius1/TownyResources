@@ -369,39 +369,26 @@ public class TownyResourcesSettings {
 	}
 	
 	public static boolean isReduceItemsScanEnabled() {
-		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_ENABLED);
-	}
-	
-	public static double getReduceItemsScanStartCountdownMinutes() {
-		return getDouble(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_START_COUNTDOWN_MINUTES);
+		return getBoolean(TownyResourcesConfigNodes.UPDATE_ITEMS_SCAN_ENABLED);
 	}
 	
 	public static int getReduceItemsScanBatchSize() {
-		return getInt(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_BATCH_SIZE);
+		return getInt(TownyResourcesConfigNodes.UPDATE_ITEMS_SCAN_BATCH_SIZE);
 	}
 	
 	public static int getReduceItemsScanPauseAfterEachBatchMillis() {
-		return getInt(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS);
+		return getInt(TownyResourcesConfigNodes.UPDATE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS);
 	}
 	
-	public static boolean getReduceItemsScanDisconnectPlayersWhileReductionProcessIsRunning() {	
-		return getBoolean(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING);
-	}
-	
-	public static String getReduceItemsScanMaterials() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_MATERIALS);
-	}
-	
-	public static String getReduceItemsScanPlayerInventories() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_PLAYER_INVENTORIES);
-	}
-	
-	public static String getReduceItemsScanWorldLocations() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_WORLD_LOCATIONS);
+	public static String getReduceItemsScanLocations() {
+		return getString(TownyResourcesConfigNodes.UPDATE_ITEMS_SCAN_LOCATIONS);
 	}
 	
 	public static String getReduceItemsScanStartingWorldLocation() {
-		return getString(TownyResourcesConfigNodes.REDUCE_ITEMS_SCAN_STARTING_LOCATION);
+		return getString(TownyResourcesConfigNodes.UPDATE_ITEMS_SCAN_STARTING_LOCATION);
 	}
 	
+	public static String getReduceItemsScanList() {
+		return getString(TownyResourcesConfigNodes.UPDATE_ITEMS_SCAN_LIST);
+	}
 }

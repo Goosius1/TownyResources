@@ -8,16 +8,17 @@ import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
-import net.minecraft.server.v1_16_R3.MinecraftServer;
-import net.minecraft.server.v1_16_R3.PlayerInteractManager;
-import net.minecraft.server.v1_16_R3.WorldServer;
+import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.PlayerInteractManager;
+import net.minecraft.server.level.WorldServer;
 import org.bukkit.*;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Container;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -121,6 +122,7 @@ public class ReduceItemsScanController {
 	}
 
 	private static void scanPlayers() {
+	
 		int batchSize = TownyResourcesSettings.getReduceItemsScanBatchSize();
 		int batchIndex = 0;
 		int numBatchesCompleted = 0;
@@ -138,14 +140,14 @@ public class ReduceItemsScanController {
 		for(OfflinePlayer offlinePlayer: Bukkit.getOfflinePlayers()) {
 		
 			try {
+
 			UUID playerUUID = offlinePlayer.getUniqueId();
 			String playerName = offlinePlayer.getName();
 			CraftWorld craftWorld = (CraftWorld) Bukkit.getWorlds().get(0);
 			WorldServer worldServer = craftWorld.getHandle();
-			PlayerInteractManager playerInteractManager = new PlayerInteractManager(worldServer);
 			MinecraftServer minecraftServer =  ((CraftServer) Bukkit.getServer()).getServer();
 			GameProfile gameProfile = new GameProfile(playerUUID, playerName);
-			EntityPlayer entityPlayer = new EntityPlayer(minecraftServer, worldServer, gameProfile, playerInteractManager);
+			EntityPlayer entityPlayer = new EntityPlayer(minecraftServer, worldServer, gameProfile);
 			Player player= entityPlayer.getBukkitEntity();
 
 			System.out.println("The player name was: " + player.getName());

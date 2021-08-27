@@ -110,7 +110,7 @@ public class TownyResourcesAdminCommand implements CommandExecutor, TabCompleter
 		String instruction = args[0].toLowerCase();		
 		switch (instruction.toLowerCase()) {
 			case "start":
-				ReduceItemsScanController.startScan(sender);
+				ReduceItemsScanController.startScanCountdown(sender);
 				return;
 			case "stop":
 				ReduceItemsScanController.stopScan(sender);

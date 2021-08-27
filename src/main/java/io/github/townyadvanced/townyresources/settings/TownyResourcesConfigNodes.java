@@ -254,73 +254,69 @@ public enum TownyResourcesConfigNodes {
 			"# 2 - The discovery weight of the category (used during discovery)",
 			"# 3-  The base amount of the offer (in stacks)",
 			"# 4-  The list of materials in the category"),
-	REDUCE_ITEMS_SCAN(
-			"reduce_items_scan",
+	UPDATE_ITEMS_SCAN(
+			"update_items_scan",
 			"",
 			"",
 			"",
 			"############################################################",
 			"# +------------------------------------------------------+ #",
-			"# |                 Reduce Items Scan                     | #",
+			"# |                 Update Items Scan                     | #",
 			"# +------------------------------------------------------+ #",
 			"############################################################",
 			""),
-	REDUCE_ITEMS_SCAN_ENABLED(
-			"reduce_items_scan.enabled",
+	UPDATE_ITEMS_SCAN_ENABLED(
+			"update_items_scan.enabled",
 			"false",
 			"",
-			"# If true, the reduce items scan can be started, using /swa reduceitems start.",
-			"# if false, the reduce items scan cannot be run."),
-	REDUCE_ITEMS_SCAN_START_COUNTDOWN_MINUTES(
-			"reduce_items_scan.start_countdown_minutes",
-			"0.5",
-			"",
-			"# The duration of the countdown after the command is run, and BEFORE the scan starts."),
-	REDUCE_ITEMS_SCAN_BATCH_SIZE(
-			"reduce_items_scan.batch_size",
+			"# If true, the update items scan can be started, using /swa reduceitems start.",
+			"# if false, the update items scan cannot be run."),
+	UPDATE_ITEMS_SCAN_BATCH_SIZE(
+			"update_items_scan.batch_size",
 			"2500",
 			"",
 			"# The number of chunks/players to process in each batch."),
-	REDUCE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS(
-			"reduce_items_scan.pause_after_each_batch_millis",
+	UPDATE_ITEMS_SCAN_PAUSE_AFTER_EACH_BATCH_MILLIS(
+			"update_items_scan.pause_after_each_batch_millis",
 			"250",
 			"",
 			"# After each batch is scanned, the code will paused temporarily. This is to help not overload the server etc."),
-	REDUCE_ITEMS_SCAN_DISCONNECT_PLAYERS_WHILE_REDUCTION_PROCESS_IS_RUNNING(
-			"reduce_items_scan.disconnect_players_while_reduction_process_is_running",
-			"true",
-			"",
-			"# If true, players are kicked when the scan starts, and cannot connect while it is running.",
-			"# Players with permission to start the scan are immune, as are OP's.",
-			"# This setting is recommended, otherwise players would certainly move items around the map to avoid them getting reduced."),
-	REDUCE_ITEMS_SCAN_MATERIALS(
-			"reduce_items_scan.materials",
-			"{GRANITE, DIORITE, ANDESITE, GOLD_INGOT, 30%}, {OAK_LOG, OAK_LOG, 10%}, {EMERALD, EMERALD, 100%}",
-			"",
-			"# The materials which will be affected by the scan.",
-			"# There can be any number of entries (the default example is just 3).",
-			"# Each entry is in the format:  {<SOURCE_MATERIAL_1> + .... <FINAL_MATERIAL>, <PERCENTAGE_STACK_REDUCTION>}.",
-			"# During scanning, whenever an item stack is found: If any entry lists that item stack as a SOURCE_MATERIAL, then the item stack is converted to the FINAL_MATERIAL of that entry, and its amount is reduced by the PERCENTAGE_STACK_REDUCTION of that entry."),
-	REDUCE_ITEMS_SCAN_PLAYER_INVENTORIES(
-			"reduce_items_scan.player_inventories",
-			"true",
-			"",
-			"# If true, then player inventories will be scanned.",
-			"# This includes regular inventories and enderchests.",
-			"# This scan is done before scanning the world locations."),			
-	REDUCE_ITEMS_SCAN_WORLD_LOCATIONS(
-			"reduce_items_scan.world_locations",
+	UPDATE_ITEMS_SCAN_LOCATIONS(
+			"update_items_scan.locations",
 			"{world: -1000, -1000, 1000, 1000} {nether, -100, -100, 100, 100}, {end -100, -100, 100, 100}",
 			"",
-			"# The locations of the game-universe which will be scanned.",
+			"# The locations of the game-universe for each scan.",
 			"# Each entry defines a rectangle in a gameworld: {<world name>, <topLeftX>, <topLeftY>, <bottomRightX>, <bottomRightY>."),
-	REDUCE_ITEMS_SCAN_STARTING_LOCATION(
-			"reduce_items_scan.starting_location",
+	UPDATE_ITEMS_SCAN_STARTING_LOCATION(
+			"update_items_scan.starting_location",
 			 "world, -1000, -1000",
 			"",
-			"# Indicates where the reduction scan should start.",
-			"# Useful if a reduction process gets interrupted.");
-						
+			"# Indicates where each scan should start",
+			"# Useful if a scan gets interrupted."),
+	UPDATE_ITEMS_SCAN_LIST(
+			"update_items_scan.list",
+			"" +
+			"[Example scan 1, INACTIVE, {DIAMOND, DIAMOND, -10%}]," +
+			"[Example scan 2, INACTIVE, {EMERALD, EMERALD, -100%}, {GRANITE, DIORITE, ANDESITE, GOLD_INGOT, -30%}, {OAK_LOG, OAK_LOG, -5%}]",			
+			"",
+			"# The list of named scans.",
+			"# Each entry is in the format:  [<Scan name>, <SCAN STATUS>, {<SOURCE_MATERIAL_1> + .... <FINAL_MATERIAL>, <PERCENTAGE_STACK_AMOUNT_CHANGE>} +]",
+			"# ",
+			"# The item updates work like this:",
+			"# - During a scan, whenever an item stack is found, if the scan configuration lists that item stack as a SOURCE_MATERIAL, then the item stack is converted to the specified FINAL_MATERIAL, and its amount is changed by the specified PERCENTAGE_STACK_AMOUNT_CHANGE.",
+			"# ",
+			"# To do a scan, execute the following steps:",
+			"# - 1. Edit this configured list and add a new scan.",
+			"# - 2. Ensure the new scan has a status of PENDING, then run /swa reload.",
+			"# - 3. All players will be kicked and the scan will start.",
+			"# - 4. When the scan completes, change the status here to COMPLETE, then run /swa reload again.",
+			"# ",
+			"# To stop a scan which has already started, simply stop the server.",
+			"# - If you want to resume the scan on restart, then update the start location config before restarting.",
+			"# - If you don't want to resume the scan on restart, then configure the scan to INACTIVE before restarting.",
+            "# ",									
+			"# IMPORTANT: DO NOT DELETE COMPLETED SCANS ... or else players who log in later will not be affected by it.");
+									
 	private final String Root;
 	private final String Default;
 	private String[] comments;
