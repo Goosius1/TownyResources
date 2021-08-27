@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
+import org.bukkit.event.server.ServerEvent;
 
 /**
  * 
@@ -94,6 +95,8 @@ public class TownyResourcesBukkitEventListener implements Listener {
 	public void onPlayerQuitEvent(PlayerQuitEvent event) {
 		if(TownyResourcesSettings.isEnabled()) {		
 			PlayerExtractionLimitsController.processPlayerQuitEvent(event);
-		}			
+		}
+		ServerEvent event1;
+		event1.
 	}
 }

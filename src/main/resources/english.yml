@@ -143,4 +143,4 @@ resource_category_eggs: 'Eggs, a flock of hens'
 resource_category_ender_pearls: 'Ender Pearls, a nest of endermen'
 
 # Added in 0.03
-admin_help_reduceitems: 'Start or stop the reduceitems scan'
+something: "...."

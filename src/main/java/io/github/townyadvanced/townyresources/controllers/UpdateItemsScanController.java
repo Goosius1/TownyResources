@@ -1,39 +1,30 @@
 package io.github.townyadvanced.townyresources.controllers;
 
-import com.mojang.authlib.GameProfile;
-import com.palmergames.adventure.text.NBTComponent;
-import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import io.github.townyadvanced.townyresources.TownyResources;
-import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory;
+import io.github.townyadvanced.townyresources.objects.UpdateItemsScan;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
-import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.server.level.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.PlayerInteractManager;
-import net.minecraft.server.level.WorldServer;
-import org.bukkit.*;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Container;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
-import java.util.*;
+public class UpdateItemsScanController {
 
-public class ReduceItemsScanController {
-
-	private static boolean countdownInProgress = false;
-	private static long countdownEndEta = 0;
-	private static boolean scanInProgress = false;
-	private static boolean scanStopping = false;
+	private static final int SCAN_COUNTDOWN_DURATION_MILLIS = 60000; //1 minute 
+	private static UpdateItemsScan pendingScan = null;
+	private static boolean countdownStarted = false;
+	private static boolean kickPlayers = false;
+	private static boolean scanStarted = false;
+	private static boolean scanStopping = false; //stop the scan or countdown
 	private static double scanPlayersPercentageCompletion = 0;
-	private static double scanChunksPercentageCompletion = 0;
-	
+	private static double scanChunksPercentageCompletion = 0;	
 
 	/**
 	 * Stops a scan
@@ -81,12 +72,26 @@ public class ReduceItemsScanController {
 	}
 
 	/**
-	 * Process the countdown to a scan
+	 * This method validates and loads all scans
 	 * 
-	 * If there is none, return
+	 * If a pending status is found, it will do the following:
+	 * 1. Kick any non-op/non-admin players
+	 * 2. Ensure those players cannot reconnect
+	 * 3. Start a countdown to a scan:
+	 * 
+	 * When the countdown hits 0, the scan will start
+	 */
+	public static void loadItemScans() {
+		//
+	}
+
+	/**
+	 * Process update items scanning
+	 * 
+	 * If a scan is due to start, we start it
 	 * If there is, and it reaches 0, start the scan
 	 */
-	public static void processScanCountdown() {
+	public static void processUpdateItemsScanning() {
 		if(!countdownInProgress)
 			return;
 			
@@ -215,6 +220,18 @@ public class ReduceItemsScanController {
 		if(!scanInProgress)
 			return;
 	
+	}
+
+	public static boolean getScanStarted() {
+		return scanStarted;
+	}
+
+	public static void setScanStopping(boolean b) {
+		scanStopping = true;
+	}
+
+	public static boolean getCountdownStarted() {
+		return countdownStarted;
 	}
 	/*
 		//Check if scan is already running
