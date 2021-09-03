@@ -143,6 +143,8 @@ public class TownyResources extends JavaPlugin {
 		pm.registerEvents(new TownyResourcesNationEventListener(this), this);
 		if(isDynmapTownyInstalled())
 			pm.registerEvents(new TownyResourcesDynmapTownyListener(this), this);
+		if(isSlimeFunInstalled())
+			pm.registerEvents(new TownyResourcesSlimefunEventListener(this), this);		
 		TownyResources.info("Listeners Loaded");		
 	}
 
