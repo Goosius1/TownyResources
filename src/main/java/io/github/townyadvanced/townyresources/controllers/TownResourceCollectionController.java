@@ -4,11 +4,11 @@ import com.palmergames.bukkit.towny.Towny;
 import com.palmergames.bukkit.towny.object.Government;
 import com.palmergames.bukkit.towny.object.Nation;
 import com.palmergames.bukkit.towny.object.Town;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.townyadvanced.townyresources.TownyResources;
 import io.github.townyadvanced.townyresources.metadata.TownyResourcesGovernmentMetaDataController;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -66,7 +66,7 @@ public class TownResourceCollectionController {
             
             //Try creating a slimefun itemstack
             if(TownyResources.getPlugin().isSlimeFunInstalled()) {
-                SlimefunItem slimeFunItem = SlimefunItem.getById(materialName);
+                SlimefunItem slimeFunItem = SlimefunItem.getByID(materialName);
                 if(slimeFunItem != null) {
                     itemStack = slimeFunItem.getRecipeOutput();
                     itemStack.setAmount(amount);
