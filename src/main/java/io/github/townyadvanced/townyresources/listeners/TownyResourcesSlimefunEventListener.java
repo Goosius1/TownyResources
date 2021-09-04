@@ -3,6 +3,7 @@ package io.github.townyadvanced.townyresources.listeners;
 import io.github.thebusybiscuit.slimefun4.api.events.AndroidFarmEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.AndroidMineEvent;
 import io.github.thebusybiscuit.slimefun4.api.events.SlimefunItemSpawnEvent;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemSpawnReason;
 import io.github.townyadvanced.townyresources.TownyResources;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,16 +19,20 @@ public class TownyResourcesSlimefunEventListener implements Listener {
 	
 	@EventHandler()
 	public void onAndroidFarm(AndroidFarmEvent event) {
+		//For this to work, the players needs to own the plot and be in the plot
 	}
 	
 	
 	@EventHandler()
 	public void onAndroidMine(AndroidMineEvent event) {
+		//For this to work, the players needs to own the plot and be in the plot
 	}
 	
 	@EventHandler()
 	public void onSlimefunItemSpawn(SlimefunItemSpawnEvent event) {
-		event.setCancelled(true);
+		if(event.getItemSpawnReason() == ItemSpawnReason.GOLD_PAN_USE) {
+			
+		}
 	}
 	
 	

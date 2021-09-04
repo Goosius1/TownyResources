@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * 
@@ -47,6 +48,12 @@ public class TownyResourcesBukkitEventListener implements Listener {
 
 	@EventHandler()
 	public void onBlockBreak(BlockBreakEvent event) {
+		System.out.println("Block break detected");
+		System.out.println("Player: " + event.getPlayer().getName());
+		for(ItemStack drop: event.getBlock().getDrops()) {
+			System.out.println("Drop: " + drop.getType().name());					
+		}
+	
 		if(TownyResourcesSettings.isEnabled() && !event.isCancelled()) {
 			PlayerExtractionLimitsController.processBlockBreakEvent(event);
 		}	
