@@ -32,15 +32,18 @@ public class TownyResourcesSlimefunEventListener implements Listener {
 	@EventHandler()
 	public void onMachineFinishEvent(AsyncMachineOperationFinishEvent event) {
 		System.out.println("A machine finished an event");
+		event.getProcessor()
 		
-		//try {              
+		//event.getProcessor().
+	//	event.getPosition()
+		try {              
 			//Get amount extracted
-			//OilPump oilPump = (OilPump)event.getProcessor().getOwner();
+			OilPump oilPump = (OilPump)event.getProcessor().getOwner();
 			AContainer aContainer = (AContainer)event.getProcessor().getOwner();
 								
-	        //Field oil = oilPump.getClass().getDeclaredField("oil");  
-	        //oil.setAccessible(true);      
-	        //GEOResource gpsResource = (GEOResource)(oil.get(oilPump));
+	        Field oil = oilPump.getClass().getDeclaredField("oil");  
+	        oil.setAccessible(true);      
+	        GEOResource gpsResource = (GEOResource)(oil.get(oilPump));
 	        //int amountExtracted = gpsResource.getItem().getAmount();
 	        //System.out.println("Amount extracted: " + amountExtracted);
 	        
@@ -54,10 +57,16 @@ public class TownyResourcesSlimefunEventListener implements Listener {
 					}
 				}
 			}
+			
+			//Put an empty bucket back in the smallest input slot
+			
+			//Put the stuff back into the group
+			gpsResource.
+		//	oilPu
 	        
-		//} catch (NoSuchFieldException | IllegalAccessException e) {
-		//	e.printStackTrace();
-		//}
+		} catch (NoSuchFieldException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
 
 
 /*
