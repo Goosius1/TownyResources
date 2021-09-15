@@ -1,5 +1,5 @@
 name: TownyResources
-version: 0.04
+version: 0.05
 language: english
 author: Goosius
 website: 'https://github.com/TownyAdvanced/TownyResources'
@@ -149,3 +149,9 @@ resource_category_slime: 'Slime, a nest of slimes'
 msg_confirm_survey: "You are about to survey the town of %s for its level %d resource. This will cost %s. Do you wish to proceed ?"
 msg_err_level_x_resource_already_discovered: "The level %d resource has already been discovered."
 msg_err_cannot_collect_unknown_material: "Cannot collect the following unknown material: %s"
+
+#Added in 0.05
+#Added in 0.05
+town_screen_daily_capital_production: '&2 > Daily Production - Town: &f'
+town_screen_daily_nation_production: '&2 > Daily Production - Nation: &f'
+dynmap_capital_resources_text: "| Town: %s | Nation: %s |"
