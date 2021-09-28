@@ -33,22 +33,27 @@ public class TownyResourcesBukkitEventListener implements Listener {
 
 	@EventHandler()
 	public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
-		if(TownyResourcesSettings.isEnabled() && !event.isCancelled()) {
-			PlayerExtractionLimitsController.processEntityDamageByEntityEvent(event);
+		if(TownyResourcesSettings.isEnabled()
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled() 
+			&& !event.isCancelled()) {
+				PlayerExtractionLimitsController.processEntityDamageByEntityEvent(event);
 		}
 	}
 
 	@EventHandler()
 	public void onEntityDeathEvent(EntityDeathEvent event) {
-		if(TownyResourcesSettings.isEnabled()) {
-			PlayerExtractionLimitsController.processEntityDeathEvent(event);
+		if(TownyResourcesSettings.isEnabled()
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled()) {
+				PlayerExtractionLimitsController.processEntityDeathEvent(event);
 		}
 	}
 
 	@EventHandler()
 	public void onBlockBreak(BlockBreakEvent event) {
-		if(TownyResourcesSettings.isEnabled() && !event.isCancelled()) {
-			PlayerExtractionLimitsController.processBlockBreakEvent(event);
+		if(TownyResourcesSettings.isEnabled() 
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled()
+			&& !event.isCancelled()) {
+				PlayerExtractionLimitsController.processBlockBreakEvent(event);
 		}	
 	}
 	
@@ -62,38 +67,46 @@ public class TownyResourcesBukkitEventListener implements Listener {
 	
 	@EventHandler()
 	public void onPlayerShearEntityEvent(PlayerShearEntityEvent event) {
-		if(TownyResourcesSettings.isEnabled() && !event.isCancelled()) {
-			PlayerExtractionLimitsController.processPlayerShearEntityEvent(event);
+		if(TownyResourcesSettings.isEnabled() 
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled()
+			&& !event.isCancelled()) {
+				PlayerExtractionLimitsController.processPlayerShearEntityEvent(event);
 		}	
 	}
 	
 	
 	@EventHandler()
 	public void onItemSpawnEvent(ItemSpawnEvent event) {
-		if(TownyResourcesSettings.isEnabled() && !event.isCancelled()) {		
-			PlayerExtractionLimitsController.processItemSpawnEvent(event);
+		if(TownyResourcesSettings.isEnabled() 
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled()
+			&& !event.isCancelled()) {		
+				PlayerExtractionLimitsController.processItemSpawnEvent(event);
 		}	
 	}
 	
 	@EventHandler()
 	public void onPlayerFishEvent(PlayerFishEvent event) {
-		if(TownyResourcesSettings.isEnabled() && !event.isCancelled()) {		
-			PlayerExtractionLimitsController.processPlayerFishEvent(event);
+		if(TownyResourcesSettings.isEnabled() 
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled()
+			&& !event.isCancelled()) {		
+				PlayerExtractionLimitsController.processPlayerFishEvent(event);
 		}	
 	}
 	
 	
 	@EventHandler()
 	public void onPlayerLoginEvent(PlayerLoginEvent event) {
-		if(TownyResourcesSettings.isEnabled()) {		
-			PlayerExtractionLimitsController.processPlayerLoginEvent(event);
+		if(TownyResourcesSettings.isEnabled()
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled()) {		
+				PlayerExtractionLimitsController.processPlayerLoginEvent(event);
 		}			
 	}
 
 	@EventHandler()
 	public void onPlayerQuitEvent(PlayerQuitEvent event) {
-		if(TownyResourcesSettings.isEnabled()) {		
-			PlayerExtractionLimitsController.processPlayerQuitEvent(event);
+		if(TownyResourcesSettings.isEnabled()
+			&& TownyResourcesSettings.areResourceExtractionLimitsEnabled()) {
+				PlayerExtractionLimitsController.processPlayerQuitEvent(event);
 		}			
 	}
 }

@@ -65,7 +65,9 @@ public class TownyResources extends JavaPlugin {
 			//Load controllers
 			TownResourceOffersController.loadAllResourceOfferCategories();
 			//WARNING: Do not try to recalculate production here, because unless SW has been loaded first, the results will be incorrect.
-			PlayerExtractionLimitsController.loadAllResourceExtractionCategories();
+			if(TownyResourcesSettings.areResourceExtractionLimitsEnabled()) {
+				PlayerExtractionLimitsController.loadAllResourceExtractionCategories();
+			}
 			//Load commands and listeners
 			registerCommands();
 			registerListeners();
@@ -96,8 +98,10 @@ public class TownyResources extends JavaPlugin {
 			//Load controllers
 			TownResourceOffersController.loadAllResourceOfferCategories();
 			TownResourceProductionController.recalculateAllProduction();
-			PlayerExtractionLimitsController.loadAllResourceExtractionCategories();
-			PlayerExtractionLimitsController.reloadAllExtractionRecordsForLoggedInPlayers();
+			if(TownyResourcesSettings.areResourceExtractionLimitsEnabled()) {
+				PlayerExtractionLimitsController.loadAllResourceExtractionCategories();
+				PlayerExtractionLimitsController.reloadAllExtractionRecordsForLoggedInPlayers();
+			}
 		} catch (Exception e) {
             e.printStackTrace();
 			severe(e.getMessage());

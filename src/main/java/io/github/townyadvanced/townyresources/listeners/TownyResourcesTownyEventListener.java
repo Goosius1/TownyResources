@@ -44,7 +44,10 @@ public class TownyResourcesTownyEventListener implements Listener {
     public void onNewDay(PreNewDayEvent event) {
         if(TownyResourcesSettings.isEnabled()) {
             TownResourceProductionController.produceAllResources();
-            PlayerExtractionLimitsController.resetDailyExtractionLimits();
+
+            if(TownyResourcesSettings.areResourceExtractionLimitsEnabled()) {
+                PlayerExtractionLimitsController.resetDailyExtractionLimits();
+            }
         }
     }
        
@@ -56,8 +59,10 @@ public class TownyResourcesTownyEventListener implements Listener {
     @EventHandler
     public void onNewShortTime(NewShortTimeEvent event) {
         if(TownyResourcesSettings.isEnabled()) {
-            PlayerExtractionLimitsController.resetMobsDamagedByPlayers();
-            PlayerExtractionLimitsController.saveExtractionRecordsForOnlinePlayers();
+            if(TownyResourcesSettings.areResourceExtractionLimitsEnabled()) {
+                PlayerExtractionLimitsController.resetMobsDamagedByPlayers();
+                PlayerExtractionLimitsController.saveExtractionRecordsForOnlinePlayers();                
+            }
 
             if(System.currentTimeMillis() > nextProductionRecalculationTime) {
                 nextProductionRecalculationTime = System.currentTimeMillis() + PRODUCTION_RECALCULATION_INTERVAL_MILLIS; 
