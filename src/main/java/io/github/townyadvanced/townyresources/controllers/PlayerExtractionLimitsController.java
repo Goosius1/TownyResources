@@ -1,5 +1,6 @@
 package io.github.townyadvanced.townyresources.controllers;
 
+import com.palmergames.bukkit.towny.Towny;
 import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.TownyUniverse;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
@@ -12,8 +13,9 @@ import io.github.townyadvanced.townyresources.objects.ResourceExtractionCategory
 import io.github.townyadvanced.townyresources.settings.TownyResourcesSettings;
 import io.github.townyadvanced.townyresources.settings.TownyResourcesTranslation;
 import io.github.townyadvanced.townyresources.util.TownyResourcesMessagingUtil;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -397,7 +399,9 @@ public class PlayerExtractionLimitsController {
             int categoryExtractionLimit = categoryExtractionRecord.getResourceExtractionCategory().getCategoryExtractionLimitItems();
             String errorString = TownyResourcesTranslation.of("msg_error_daily_extraction_limit_reached", translatedCategoryName, categoryExtractionLimit);
             //Send temporary action bar message
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.DARK_RED + errorString));
+            TextComponent msgComponent = LegacyComponentSerializer.builder().build().deserialize(ChatColor.DARK_RED + errorString);
+            Audience playerAudience = (Audience) Towny.getAdventure().player(player);
+            playerAudience.sendActionBar(msgComponent);
             //Send longer-lasting chat message
             TownyResourcesMessagingUtil.sendErrorMsg(player, errorString);                    
             categoryExtractionRecord.setNextLimitWarningTime(System.currentTimeMillis() + cooldownAfterDailyLimitWarningMessageMillis);
